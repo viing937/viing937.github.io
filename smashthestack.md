@@ -202,8 +202,6 @@
         # cat /home/level6/.pass
         rXCikld0ex3EQsnI
 
-#### level05_alt
-
 ### level-6
 
         # ssh level6@io.smashthestack.org
