@@ -135,8 +135,6 @@
         # ssh level4@io.smashthestack.org
         password: nSwmULj2LpDnRGU2
 
-#### level04
-
         # cat /levels/level04.c
         
         #include <stdlib.h>
@@ -167,22 +165,10 @@
         # /levels/level04
         Welcome LOoCy5PbKi63qXTh
         
-#### level04_alt
-
-        # cat /levels/level04_alt.c
-
-        #include <stdlib.h>
-        int main(){
-            setresuid(geteuid(), geteuid(), geteuid());
-            system("/usr/bin/id");
-        }
-        
 ### level-5
 
         # ssh level5@io.smashthestack.org
         password: LOoCy5PbKi63qXTh
-        
-#### level05
 
         # cat /levels/level05.c
         
@@ -207,8 +193,5 @@
         # ssh level6@io.smashthestack.org
         password: rXCikld0ex3EQsnI
         
-#### level06
-
         # cat /levels/level06.c
         
-#### level06_alt
