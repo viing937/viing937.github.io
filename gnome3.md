@@ -2,7 +2,9 @@
 
 ## hide the title bar
 
-        vim /usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
+Gnome 3.16 changes to the window decoration code (dropping support for the old Metacity format).
+
+        # vim /usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
         
         <frame_geometry name="max" has_title="false" title_scale="medium" parent="normal" rounded_top_left="false" rounded_top_right="false">
             <distance name="left_width" value="0" />
