@@ -2,7 +2,7 @@
 
 ## hide the title bar
 
-Gnome 3.16 changes to the window decoration code (dropping support for the old Metacity format).
+Gnome 3.16 changes to the window decoration code (dropping support for the old Metacity format) and it does't work.
 
         # vim /usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
         
