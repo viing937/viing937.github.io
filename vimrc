@@ -14,6 +14,7 @@ runtime! archlinux.vim
 " Or better yet, read /usr/share/vim/vim74/vimrc_example.vim or the vim manual
 " and configure vim to your own liking!
 
+filetype plugin on
 syntax on
 
 set number
