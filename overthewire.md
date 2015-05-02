@@ -160,5 +160,5 @@
 
 ### level 4
 
-        # ssh narnia3@narnia.labs.overthewire.org
+        # ssh narnia4@narnia.labs.overthewire.org
         password: thaenohtai
