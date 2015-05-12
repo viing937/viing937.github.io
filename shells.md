@@ -17,11 +17,12 @@ The shells file contains a list of login shells on the system. Applications use 
 
 ## login incorrect
 
-I add a user using this command
+I added a user using this command
 
         useradd -m -G wheel -s /usr/bin/bash ving
 
-The command seems ok, but when I login as ving with the right password, it repeatedly says "login incorrect".
+The command seems ok, but when I tried to login as ving with the right password, it repeatedly said "login incorrect".
+
 This is just because the shells file does not contain "/usr/bin/bash" although /usr/bin/bash is linked to /bin/bash.
 
-When a shell program is installed in linux, its corresponding path is added to the shells file. When bash is installed along with arch linux it writes "/bin/bash" in the shells file. But after that arch linux’s installation linked /bin to /usr/bin. So whenever I enter "which bash" it returns /usr/bin/bash.
+When a shell program is installed in linux, its corresponding path is added to the shells file. When bash is installed along with arch linux it writes "/bin/bash" in the shells file. But after that arch linux’s installation linked /bin to /usr/bin. So whenever I enter "which bash" it returns "/usr/bin/bash". I used this path to add a user but it is not in the shells file.
