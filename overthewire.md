@@ -1,4 +1,4 @@
-# [overthewire.org](http://overthewire.org/wargames/)
+# [overthewire](http://overthewire.org/wargames/)
 
 ## [Narnia](http://overthewire.org/wargames/narnia/)
 

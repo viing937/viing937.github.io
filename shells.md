@@ -1,6 +1,4 @@
-# shells
-
-## /etc/shells
+# /etc/shells
 
 The shells file contains a list of login shells on the system. Applications use this file to determine whether a shell is valid. For each shell a single line should be present, consisting of the shell's path, relative to the root of the directory structure (/).
 
