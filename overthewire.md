@@ -1,6 +1,6 @@
 # [overthewire](http://overthewire.org/wargames/)
 
-## [Narnia](http://overthewire.org/wargames/narnia/)
+## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
 

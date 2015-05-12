@@ -2,7 +2,7 @@
 
 ## [IO](http://io.smashthestack.org:84/)
 
-### level-1
+### level 1
 
         # ssh level1@io.smashthestack.org
         password: level1
@@ -24,7 +24,7 @@
         Enter the 3 digit passcode to enter: 271
         Congrats you found it, now read the password for level2 from /home/level2/.pass
         
-### level-2
+### level 2
 
         # ssh level2@io.smashthestack.org
         password: 3ywr07ZFw5IsdKzU
@@ -84,7 +84,7 @@
         
         # /levels/level02_alt nan
         
-### level-3
+### level 3
 
         # ssh level3@io.smashthestack.org
         password: IFd92yzOnSMv9tkX
@@ -130,7 +130,7 @@
         This is exciting we're going to 0x8048474
         Win.
 
-### level-4
+### level 4
 
         # ssh level4@io.smashthestack.org
         password: nSwmULj2LpDnRGU2
@@ -165,7 +165,7 @@
         # /levels/level04
         Welcome LOoCy5PbKi63qXTh
         
-### level-5
+### level 5
 
         # ssh level5@io.smashthestack.org
         password: LOoCy5PbKi63qXTh
@@ -188,7 +188,7 @@
         # cat /home/level6/.pass
         rXCikld0ex3EQsnI
 
-### level-6
+### level 6
 
         # ssh level6@io.smashthestack.org
         password: rXCikld0ex3EQsnI
