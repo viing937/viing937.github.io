@@ -2,6 +2,30 @@
 
 ## [bandit](http://overthewire.org/wargames/bandit/)
 
+### level 0
+
+        # ssh bandit0@bandit.labs.overthewire.org
+        password: bandit0
+
+        # cat readme
+        boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+### level 1
+
+        # ssh bandit1@bandit.labs.overthewire.org
+        password: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+        # cat ./-
+        CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+### level 2
+
+        # ssh bandit2@bandit.labs.overthewire.org
+        CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+        # cat spaces\ in\ this\ filename
+        UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
