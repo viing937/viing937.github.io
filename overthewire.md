@@ -1,5 +1,7 @@
 # [overthewire](http://overthewire.org/wargames/)
 
+## [bandit](http://overthewire.org/wargames/bandit/)
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
