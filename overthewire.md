@@ -70,6 +70,14 @@
         # find / -size 33c -user bandit7 -group bandit6 -exec cat {} \;
         HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
 
+### level 7
+
+        # ssh bandit7@bandit.labs.overthewire.org
+        password: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+
+        # cat data.txt | grep millionth
+        cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
