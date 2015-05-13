@@ -102,6 +102,14 @@
         # cat data.txt | base64 --decode
         The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
 
+### level 11
+
+        # ssh bandit11@bandit.labs.overthewire.org
+        password: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+        # cat data.txt | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+        The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
