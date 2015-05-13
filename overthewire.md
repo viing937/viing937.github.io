@@ -21,10 +21,18 @@
 ### level 2
 
         # ssh bandit2@bandit.labs.overthewire.org
-        CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+        password: CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 
         # cat spaces\ in\ this\ filename
         UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
+### level 3
+
+        # ssh bandit3@bandit.labs.overthewire.org
+        password: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
+        # cat inhere/.hidden
+        pIwrPrtPN36QITSp3EQaw936yaFoFgAB
 
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
