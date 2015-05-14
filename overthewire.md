@@ -252,8 +252,8 @@ The password for the next level will be shown in the first shell.
         echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
         cat /etc/bandit_pass/$myname > /tmp/$mytarget
 
-        # cat /tmp/8169b67bd894ddbb4412f91573b38db3
-        Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+        # cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+        jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
 
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
