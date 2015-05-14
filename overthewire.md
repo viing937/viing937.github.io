@@ -182,6 +182,25 @@ It returns a private key and save the private key in file /tmp/ving/rsa.
         # cat /etc/bandit_pass/bandit17
         xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
 
+### level 17
+
+        # ssh bandit17@bandit.labs.overthewire.org
+        password: xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn
+
+        # diff passwords.new passwords.old
+        42c42
+        < kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+        ---
+        > BS8bqB1kqkinKJjuxL6k072Qq9NRwQpR
+
+### level 18
+
+        # scp bandit18@bandit.labs.overthewire.org:~/readme ./
+        password: kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+        # cat readme
+        IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
