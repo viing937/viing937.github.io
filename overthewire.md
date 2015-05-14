@@ -234,11 +234,25 @@ The password for the next level will be shown in the first shell.
 
         # cat /usr/bin/cronjob_bandit22.sh
 
-        #!/bin/bash
         chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
         cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 
         # cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+        Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+### level 22
+
+        # ssh bandit22@bandit.labs.overthewire.org
+        password: Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+        # cat /usr/bin/cronjob_bandit23.sh
+
+        myname=$(whoami)
+        mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+        echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+        cat /etc/bandit_pass/$myname > /tmp/$mytarget
+
+        # cat /tmp/8169b67bd894ddbb4412f91573b38db3
         Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
 
 ## [narnia](http://overthewire.org/wargames/narnia/)
