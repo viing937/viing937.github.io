@@ -216,7 +216,7 @@ It returns a private key and save the private key in file /tmp/ving/rsa.
 
         # echo GbKksEFF4yrVs6il55v6gwY5aVje5f0j | nc localhost -l 7999
 
-Open another shell via ssh.
+Then open another shell via ssh.
 
         # ./suconnect 7999
 
