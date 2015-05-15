@@ -316,6 +316,22 @@ Then type ":r /etc/bandit_pass/bandit26" and the password will be shown.
 
         5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
 
+## [natas](http://overthewire.org/wargames/natas/)
+
+### [level 0](http://natas0.natas.labs.overthewire.org)
+
+        Username: natas0
+        Password: natas0
+
+        The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto 
+
+### [level 1](http://natas1.natas.labs.overthewire.org)
+
+        Username: natas1
+        Password: gtVrDuiDfck831PqWsLEZy5gyDz1clto
+
+        The password for natas2 is ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi 
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
