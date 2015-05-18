@@ -398,6 +398,15 @@ The secret is in /includes/secret.inc.
         Access granted.
         The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9
 
+### [level 7](http://natas7.natas.labs.overthewire.org)
+
+        Username: natas7
+        Password: 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9
+
+The password is in http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8.
+
+        DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe 
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
