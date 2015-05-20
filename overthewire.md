@@ -412,7 +412,10 @@ The password is in http://natas7.natas.labs.overthewire.org/index.php?page=/etc/
         Username: natas8
         Password: DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe
 
-        # echo base64_decode(strrev(hex2bin("3d3d516343746d4d6d6c315669563362")));
+        <?php
+        echo base64_decode(strrev(hex2bin("3d3d516343746d4d6d6c315669563362")));
+        ?>
+
         oubWYf2kBq
 
         Access granted.
