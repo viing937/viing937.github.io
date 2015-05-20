@@ -436,6 +436,20 @@ The output contains password.
 
         /etc/natas_webpass/natas10:nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
 
+### [level 10](http://natas10.natas.labs.overthewire.org)
+
+        Username: natas10
+        Password: nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+
+This level only check whether the input contains character ";", "|" and "&".
+The solution for level 9 still works.
+
+        '.*' /etc/natas_webpass/natas11
+
+The result is below.
+
+        /etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
