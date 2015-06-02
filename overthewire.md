@@ -559,7 +559,7 @@ If we add double quote in username and password, the SQL language is break.
 
 We can browse to the url below to guess the password.
 
-        http://natas15.natas.labs.overthewire.org/?username=natas16" and password like "w%&debug
+        http://natas15.natas.labs.overthewire.org/?username=natas16" and password like binary"W%&debug
 
 Write a python script to complete the work.
 
