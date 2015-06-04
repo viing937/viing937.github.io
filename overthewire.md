@@ -446,7 +446,7 @@ The solution for level 9 still works.
 
         '.*' /etc/natas_webpass/natas11
 
-The result is below.
+Show the result here.
 
         /etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
 
