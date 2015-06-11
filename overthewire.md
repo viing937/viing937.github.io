@@ -770,7 +770,7 @@ Get the password easily.
         Username: natas24
         Password: OsRmXFguozKpTZZ5X14zNO43379LZveg
 
-Read the PHP document.
+Read the PHP manual.
 
         Note a difference between 5.2 and 5.3 versions
 
