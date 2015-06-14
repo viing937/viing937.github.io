@@ -624,7 +624,6 @@ We are going to use time-based blind SQL injections to brute force the password.
 
 Have a try, browse to the url below to guess the password.
 If the password starts with x, the result will be returned after a sleep.
-Why can character "#" following input disable the last double quote?
 
         http://natas17.natas.labs.overthewire.org/?username=natas18" and if(password like binary "x%", sleep(5), null)%23&debug
 
