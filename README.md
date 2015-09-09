@@ -2,7 +2,11 @@
 
 * [gnome3](gnome3.md)
  + hide the title bar
-* [overthewire](overthewire.md)
+* arch
+ + [bashrc](arch/bashrc)
+ + [inputrc](arch/inputrc)
+ + [vimrc](arch/vimrc)
+* overthewire
  + bandit
  + natas
  + narnia
