@@ -9,6 +9,7 @@ The trick to beating this level is in the comments at the top of the page.
     // database gets cleared every 5 min
 
 We can do this by spamming login attempts to the server and if we post at the exact moment where the database gets cleared but the natas28 user is not automatically added yet, we can create our own natas28 user.
+It seems the database clearing and creation of the natas28 user is not in one transaction but has some delay between them.
 I will show a python script doing this.
 
     import requests
