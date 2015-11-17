@@ -1,7 +1,10 @@
-PS1='\[\e[0;34m\]\u\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]\[\e[0;0m\]\$ '
+PS1='\[\e[0;34m\]\u\[\e[m\]:\[\e[1;34m\]\w\[\e[m\]$(__git_ps1 "\[\e[3;36m\](%s)")\[\e[0;0m\]\$ '
 PS2='> '
 PS3='> '
 PS5='+ '
+
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+[ -r /usr/share/git/completion/git-prompt.sh   ] && . /usr/share/git/completion/git-prompt.sh
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
