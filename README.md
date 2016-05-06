@@ -1,9 +1,9 @@
 # index
 
-* arch
- + [bashrc](arch/bashrc)
- + [inputrc](arch/inputrc)
- + [vimrc](arch/vimrc)
+* config
+ + [bashrc](config/bashrc)
+ + [inputrc](config/inputrc)
+ + [vimrc](config/vimrc)
 * overthewire
  + bandit
  + natas
