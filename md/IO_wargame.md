@@ -1,9 +1,9 @@
-# [Smash The Stack(IO)](http://io.smashthestack.org:84/)
+# [IO wargame](http://io.netgarage.org/)
 
 ## level 1
 
 ```
-$ ssh level1@io.smashthestack.org
+$ ssh level1@io.netgarage.org
 password: level1
 ```
 
