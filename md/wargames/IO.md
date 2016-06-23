@@ -1,4 +1,4 @@
-# [IO wargame](http://io.netgarage.org/)
+# [IO](http://io.netgarage.org/)
 
 ## level 1
 
