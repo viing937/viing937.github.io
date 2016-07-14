@@ -168,6 +168,13 @@ $ pacman -S gdm
 $ systemctl enable gdm
 ```
 
+### Networkmanager
+
+```
+$ pacman -S networkmanager
+$ systemctl enable NetworkManager
+```
+
 ### Proxy
 
 #### Shadowsocks
@@ -217,6 +224,31 @@ $ pacman -S xf86-input-libinput
 
 ```
 $ pacman -S ttf-dejavu wqy-microhei
+```
+
+### Chinese input method
+
+```
+$ pacman -S fcitx-im fcitx-configtool
+```
+
+```
+$ vim ~/.xprofile
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+```
+
+Disable iBus.
+
+```
+$ gsettings set org.gnome.settings-daemon.plugins.keyboard active false
+```
+
+Reboot and configure fcitx.
+
+```
+$ fcitx-configtool
 ```
 
 ### Other
