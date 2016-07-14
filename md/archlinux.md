@@ -251,6 +251,15 @@ Reboot and configure fcitx.
 $ fcitx-configtool
 ```
 
+### Vim plugins
+
+```
+$ pacman -S vim-supertab
+$ pacman -S vim-syntastic
+$ pacman -S vim-nerdtree
+$ pacman -S vim-taglist
+```
+
 ### Other
 
 #### Install some tools
