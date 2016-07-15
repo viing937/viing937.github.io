@@ -266,7 +266,7 @@ $ pacman -S vim-taglist
 
 ```
 $ pacman -S bash-completion
-$ pacman -S moreutils wireless_tools net-tools
+$ pacman -S moreutils wireless_tools net-tools dosfstools
 ```
 
 #### Load [configuration](/md/config.md)
