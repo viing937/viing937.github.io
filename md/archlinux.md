@@ -180,7 +180,7 @@ $ systemctl enable NetworkManager
 #### Shadowsocks
 
 ```
-$ sudo pacman -S shadowsocks
+$ pacman -S shadowsocks
 $ vim /etc/shadowsocks/example.json
 $ systemctl enable shadowsocks@example
 ```
