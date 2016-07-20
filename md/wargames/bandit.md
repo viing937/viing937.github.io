@@ -1,4 +1,6 @@
-# [Bandit](http://overthewire.org/wargames/bandit/)
+# Bandit
+
+More information is available [here](http://overthewire.org/wargames/bandit/).
 
 ## level 0
 

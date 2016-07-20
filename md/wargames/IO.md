@@ -1,4 +1,6 @@
-# [IO](http://io.netgarage.org/)
+# IO
+
+More information is available [here](http://io.netgarage.org/).
 
 ## level 1
 
