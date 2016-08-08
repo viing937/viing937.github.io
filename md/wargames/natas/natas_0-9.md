@@ -124,9 +124,9 @@ DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe
 
 ## level 8
 
-Access ```http://natas8.natas.labs.overthewire.org/index-source.html```.
-
 ```php
+// http://natas8.natas.labs.overthewire.org/index-source.html
+<?php
 $encodedSecret = "3d3d516343746d4d6d6c315669563362";
 
 function encodeSecret($secret) {
@@ -140,9 +140,10 @@ if(array_key_exists("submit", $_POST)) {
     print "Wrong secret";
     }
 }
+?>
 ```
 
-Decode the secret.
+Decode the ```secret```.
 
 ```
 $ echo 3d3d516343746d4d6d6c315669563362 | xxd -p -r | rev | base64 -d
@@ -159,9 +160,9 @@ Access granted. The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
 
 ## level 9
 
-Access ```http://natas9.natas.labs.overthewire.org/index-source.html```.
-
 ```php
+// http://natas9.natas.labs.overthewire.org/index-source.html
+<?php
 $key = "";
 
 if(array_key_exists("needle", $_REQUEST)) {
@@ -171,6 +172,7 @@ if(array_key_exists("needle", $_REQUEST)) {
 if($key != "") {
     passthru("grep -i $key dictionary.txt");
 }
+?>
 ```
 
 ```
