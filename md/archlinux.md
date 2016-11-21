@@ -270,4 +270,4 @@ $ pacman -S pkgfile
 $ pacman -S moreutils wireless_tools net-tools dosfstools
 ```
 
-#### Load [configuration](/md/config.md)
+#### Load [configuration](/md/arch_config.md)

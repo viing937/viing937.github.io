@@ -37,4 +37,6 @@ set shiftwidth=4
 set nobackup
 set nowritebackup
 set noswapfile
+
+set clipboard=unnamed
 ```
