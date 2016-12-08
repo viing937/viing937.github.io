@@ -269,5 +269,3 @@ $ pacman -S bash-completion
 $ pacman -S pkgfile
 $ pacman -S moreutils wireless_tools net-tools dosfstools
 ```
-
-#### Load [configuration](/md/arch_config.md)
