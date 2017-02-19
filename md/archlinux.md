@@ -246,3 +246,18 @@ $ pacman -S bash-completion
 $ pacman -S pkgfile
 $ pacman -S moreutils wireless_tools net-tools dosfstools
 ```
+
+```
+$ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1
+```
+
+```
+$ pacman -S vim
+$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+#### Dotfiles
+
+```
+$ git clone https://github.com/viing937/dotfiles.git
+```
