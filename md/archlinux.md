@@ -192,20 +192,6 @@ $ pacman -S proxychains-ng
 $ vim /etc/proxychains.conf
 ```
 
-### AUR helper
-
-```
-$ git clone https://aur.archlinux.org/package-query.git
-$ cd package-query
-$ makepkg -si
-```
-
-```
-$ git clone https://aur.archlinux.org/yaourt.git
-$ cd yaourt
-$ makepkg -si
-```
-
 ### Input devices
 
 #### Touchpad Synaptics
@@ -249,15 +235,6 @@ Reboot and configure fcitx.
 
 ```
 $ fcitx-configtool
-```
-
-### Vim plugins
-
-```
-$ pacman -S vim-supertab
-$ pacman -S vim-syntastic
-$ pacman -S vim-nerdtree
-$ pacman -S vim-taglist
 ```
 
 ### Other
