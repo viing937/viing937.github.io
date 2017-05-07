@@ -1,4 +1,7 @@
-# ArchLinux
+---
+---
+
+# My ArchLinux Installation Guide
 
 It is a installation guide.
 
