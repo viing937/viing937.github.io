@@ -1,45 +1,44 @@
 ---
+title: My ArchLinux Installation Guide
+layout: post
 ---
 
-# My ArchLinux Installation Guide
+* TOC
+{:toc}
 
-It is a installation guide.
+It is a ArchLinux installation guide.
 
-## 1. Preparation
+# 1. Preparation
 
-### Connect to the Internet
+## 1.1 Connect to the Internet
 
-#### wired
-
-The ```dhcpcd``` daemon is enabled on boot for wired devices, and will attempt to start a connection. 
-
-#### Wireless
+If your device is wired, the `dhcpcd` daemon is enabled and will attempt to start a connection, otherwise
 
 ```
 $ wifi-menu
 ```
 
-### Update the system clock
+## 1.2 Update the system clock
 
 ```
 $ timedatectl set-ntp true
 ```
 
-## 2. Prepare the storage devices
+# 2. Prepare the storage devices
 
-### Partition the devices
+## 2.1 Partition the devices
 
 ```
 $ fdisk /dev/sdx
 ```
 
-### Format the partitions
+## 2.2 Format the partitions
 
 ```
 $ mkfs.ext4 /dev/sdxy
 ```
 
-### Mount the partitions
+## 2.3 Mount the partitions
 
 ```
 $ mount /dev/sdxy /mnt
@@ -50,65 +49,58 @@ $ mkdir /mnt/home
 $ mount /dev/sdxy /mnt/home
 ```
 
-## 3. Installation
+# 3. Installation
 
-### Select the mirrors
+## 3.1 Select the mirrors
 
 ```
 $ vim /etc/pacman.d/mirrorlist
 ```
 
-### Install the base packages
+## 3.2 Install the base packages
 
 ```
 $ pacstrap -i /mnt base base-devel
 ```
 
-## 4. Configuration
+# 4. Configuration
 
-### fstab
+## 4.1 fstab
 
 ```
 $ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-### Change root
+## 4.2 Change root
 
 ```
 $ arch-chroot /mnt /bin/bash
 ```
 
-### Locale
+## 4.3 Locale
 
+Uncomment `en_US.UTF-8 UTF-8` and `zh_CN.UTF-8 UTF-8`.
 ```
 $ vim /etc/locale.gen
+```
+
+```
 $ locale-gen
 $ echo LANG=en_US.UTF-8 > /etc/locale.conf
 ```
 
-### Time
-
-#### Select a time zone
+## 4.4 Time
 
 ```
 $ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-```
-
-#### Set the time standard to UTC
-
-```
 $ hwclock --systohc --utc
 ```
 
-### Network configuration
-
-#### Hostname
+## 4.5 Network configuration
 
 ```
 $ echo <hostname> > /etc/hostname
 ```
-
-It is recommended to append the same host name to ```/etc/hosts```, for example:
 
 ```
 $ cat /etc/hosts
@@ -116,20 +108,7 @@ $ cat /etc/hosts
 ::1         localhost.localdomain   localhost    <hostname>
 ```
 
-#### Wired
-
-```
-$ systemctl enable dhcpcd
-```
-
-#### Wireless
-
-```
-$ pacman -S iw wpa_supplicant dialog
-$ wifi-menu
-```
-
-### Boot loader
+## 4.6 Boot loader
 
 ```
 $ pacman -S grub os-prober
@@ -137,33 +116,35 @@ $ grub-install --recheck /dev/sdx
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### Root password
+## 4.7 Root password
 
 ```
 $ passwd
 ```
 
-## 5. Unmount the partitions and reboot
+# 5. Unmount the partitions and reboot
 
 ```
 $ umount -R /mnt
 $ reboot
 ```
 
-## 6. Post-installation
+# 6. Post-installation
 
-### Users and groups
+## 6.1 Add user
 
 ```
 $ useradd -m -g users -G wheel -s /bin/bash ving
 $ passwd ving
 ```
 
+Allow users in `wheel` group use `sudo` command.
+
 ```
 $ vim /etc/sudoers
 ```
 
-### Graphical user interface
+## 6.2 Graphical user interface
 
 ```
 $ pacman -S gnome
@@ -171,16 +152,16 @@ $ pacman -S gdm
 $ systemctl enable gdm
 ```
 
-### Networkmanager
+## 6.3 Networkmanager
 
 ```
 $ pacman -S networkmanager
 $ systemctl enable NetworkManager
 ```
 
-### Proxy
+## 6.4 Proxy
 
-#### Shadowsocks
+Shadowsocks.
 
 ```
 $ pacman -S shadowsocks
@@ -188,38 +169,40 @@ $ vim /etc/shadowsocks/example.json
 $ systemctl enable shadowsocks@example
 ```
 
-#### Proxychains
+Proxychains.
 
 ```
 $ pacman -S proxychains-ng
 $ vim /etc/proxychains.conf
 ```
 
-### Input devices
+## 6.7 Input devices
 
-#### Touchpad Synaptics
+if you are using a laptop
 
 ```
 $ pacman -S xf86-input-synaptics
 ```
 
-#### TrackPoints
+if your your laptop has a TrackPoint
 
 ```
 $ pacman -S xf86-input-libinput
 ```
 
-### Fonts
+## 6.8 Fonts
 
 ```
 $ pacman -S ttf-dejavu wqy-microhei
 ```
 
-### Chinese input method
+## 6.9 Chinese input method
 
 ```
 $ pacman -S fcitx-im fcitx-configtool
 ```
+
+The `xprofile` is contained in my dot files.
 
 ```
 $ vim ~/.xprofile
@@ -240,27 +223,26 @@ Reboot and configure fcitx.
 $ fcitx-configtool
 ```
 
-### Other
+## 6.10 Other
 
-#### Install some tools
+Fetch my dot files.
+
+```
+$ git clone https://github.com/viing937/dotfiles.git
+```
+
+```
+$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+```
+$ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
+```
+
+Install some tools.
 
 ```
 $ pacman -S bash-completion
 $ pacman -S pkgfile
 $ pacman -S moreutils wireless_tools net-tools dosfstools
-```
-
-```
-$ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1
-```
-
-```
-$ pacman -S vim
-$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-```
-
-#### Dotfiles
-
-```
-$ git clone https://github.com/viing937/dotfiles.git
 ```
