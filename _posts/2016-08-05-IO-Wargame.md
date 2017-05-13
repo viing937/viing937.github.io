@@ -338,7 +338,7 @@ int main(int argc, char **argv)
 ```
 
 We need to pass a number in that is less than `10`, but is big enough to allow us to overflow `buf` so that we can modify the value of `count`.
-The data that’s written to `buf` is only allowed to be `count * sizeof(int)` in size. 
+The data that’s written to `buf` is only allowed to be `count * sizeof(int)` in size.
 
 What’s interesting about this is that `sizeof(int)` on a 32-bit machine is 4, which is effectively a `SHL 2` operation.
 
