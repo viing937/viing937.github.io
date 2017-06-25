@@ -228,15 +228,8 @@ $ fcitx-configtool
 Fetch my dot files.
 
 ```
-$ git clone https://github.com/viing937/dotfiles.git
-```
-
-```
-$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-```
-
-```
-$ git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt
+$ git clone https://github.com/viing937/dotfiles.git ~/.dotfiles
+$ ~/.dotfiles/install.sh
 ```
 
 Install some tools.
@@ -244,5 +237,4 @@ Install some tools.
 ```
 $ pacman -S bash-completion
 $ pacman -S pkgfile
-$ pacman -S moreutils wireless_tools net-tools dosfstools
 ```
