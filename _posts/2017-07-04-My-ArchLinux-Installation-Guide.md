@@ -92,7 +92,7 @@ $ echo LANG=en_US.UTF-8 > /etc/locale.conf
 ## 4.4 Time
 
 ```
-$ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+$ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 $ hwclock --systohc --utc
 ```
 
@@ -100,12 +100,6 @@ $ hwclock --systohc --utc
 
 ```
 $ echo <hostname> > /etc/hostname
-```
-
-```
-$ cat /etc/hosts
-127.0.0.1   localhost.localdomain   localhost    <hostname>
-::1         localhost.localdomain   localhost    <hostname>
 ```
 
 ## 4.6 Boot loader
@@ -148,14 +142,12 @@ $ vim /etc/sudoers
 
 ```
 $ pacman -S gnome
-$ pacman -S gdm
 $ systemctl enable gdm
 ```
 
 ## 6.3 Networkmanager
 
 ```
-$ pacman -S networkmanager
 $ systemctl enable NetworkManager
 ```
 
@@ -193,7 +185,7 @@ $ pacman -S xf86-input-libinput
 ## 6.8 Fonts
 
 ```
-$ pacman -S ttf-dejavu wqy-microhei
+$ pacman -S wqy-microhei
 ```
 
 ## 6.9 Chinese input method
@@ -211,12 +203,6 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 ```
 
-Disable iBus.
-
-```
-$ gsettings set org.gnome.settings-daemon.plugins.keyboard active false
-```
-
 Reboot and configure fcitx.
 
 ```
@@ -230,11 +216,4 @@ Fetch my dot files.
 ```
 $ git clone https://github.com/viing937/dotfiles.git ~/.dotfiles
 $ ~/.dotfiles/install.sh
-```
-
-Install some tools.
-
-```
-$ pacman -S bash-completion
-$ pacman -S pkgfile
 ```
