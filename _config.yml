@@ -1,5 +1,5 @@
 title: Ving's Notes
 description: You got this. Make it happen.
-theme: jekyll-theme-hacker
+theme: jekyll-theme-cayman
 kramdown:
   toc_levels: 1..2
