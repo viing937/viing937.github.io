@@ -1,5 +1,9 @@
 title: Ving's Notes
+author:
+  name: Ving
+  email: viing937@gmail.com
 description: You got this. Make it happen.
-theme: jekyll-theme-cayman
-kramdown:
-  toc_levels: 1..2
+
+theme: minima
+plugins:
+  - jekyll-seo-tag
