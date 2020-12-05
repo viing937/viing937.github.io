@@ -1,6 +1,6 @@
 ---
-title: OverTheWire Narnia Level 0-6
 layout: post
+title: OverTheWire Narnia Level 0-6
 ---
 
 * TOC

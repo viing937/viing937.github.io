@@ -1,6 +1,6 @@
 ---
-title: OverTheWire Natas Level 0-27
 layout: post
+title: OverTheWire Natas Level 0-27
 ---
 
 * TOC

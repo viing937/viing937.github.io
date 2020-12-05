@@ -1,6 +1,6 @@
 ---
-title: OverTheWire Bandit Level 0-25
 layout: post
+title: OverTheWire Bandit Level 0-25
 ---
 
 * TOC

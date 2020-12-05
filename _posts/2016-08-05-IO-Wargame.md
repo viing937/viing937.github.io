@@ -1,6 +1,6 @@
 ---
-title: IO Wargame Level 1-11
 layout: post
+title: IO Wargame Level 1-11
 ---
 
 * TOC

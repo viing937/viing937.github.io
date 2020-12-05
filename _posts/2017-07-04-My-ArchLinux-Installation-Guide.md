@@ -1,6 +1,6 @@
 ---
-title: My ArchLinux Installation Guide
 layout: post
+title: My ArchLinux Installation Guide
 ---
 
 * TOC
