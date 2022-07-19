@@ -6,7 +6,7 @@ description: You got this. Make it happen.
 twitter_username: viing937
 github_username: viing937
 
-theme: minima
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
