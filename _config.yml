@@ -1,12 +1,16 @@
 title: Ving's Notes
-author: Ving
-email: viing937@gmail.com
+author:
+  name: Ving
+  email: viing937@gmail.com
 description: You got this. Make it happen.
 
-twitter_username: viing937
-github_username: viing937
+minima:
+  social_links:
+    twitter: viing937
+    github: viing937
 
-theme: minima
+remote_theme: jekyll/minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
