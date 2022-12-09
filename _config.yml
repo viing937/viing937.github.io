@@ -6,8 +6,8 @@ description: You got this. Make it happen.
 
 minima:
   social_links:
-    twitter: viing937
-    github: viing937
+    - { platform: twitter, user_url: "https://twitter.com/viing937" }
+    - { platform: github, user_url: "https://github.com/viing937" }
 
 remote_theme: jekyll/minima
 plugins:
